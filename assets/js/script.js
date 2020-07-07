@@ -478,102 +478,42 @@
 
 
 
-	function sendMail(scope) {
-		
-		/*
-		const sendgrid = require('@sendgrid/mail');
-		sendgrid.setApiKey('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');
-		
-		const email = {
-			  to: 'birtvi23@gmail.com',
-			  from: 'pertiapertia@gmail.com',
-			  subject: 'New Task',
-			  text: 'Hello We got new Task',
-			};
-		
-		sendgrid.send(email)
-	
-		
-		const url = 'https://api.sendgrid.com/v3/mail/send';
-		
-		const header1 = 'Bearer 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';
-		const header2 = 'application/json';
-		const data = {
-					  "personalizations": [
-						{
-						  "to": [
-							{
-							  "email": "john@example.com"
-							}
-						  ],
-						  "subject": "Hello, World!"
-						}
-					  ],
-					  "from": {
-						"email": "from_address@example.com"
-					  },
-					  "content": [
-						{
-						  "type": "text/plain",
-						  "value": "Hello, World!"
-						}
-					  ]
-					};
-		  $.ajax({
-			  url: url,
-			  type:"POST",
-			  data: data,
-			  beforeSend: function(xhr){
-				  xhr.setRequestHeader('Authorization', header1);
-				  xhr.setRequestHeader('Content-Type', header2);
-			 },
+$("#contact-form").submit(function() {
 
-			  success: function(result){
-					console.log(result);
+    var url = "http://localhost:8080/main/order"; // the script where you handle the form input.
+
+    $.ajax({
+           type: "POST",
+           url: url,
+		   dataType: 'json',
+           data: $("#contact-form").serialize(), 
+             success: function(result){
+					window.location.replace("file:///D:/Workspace/web/iSee/success.html");
 			  },
 			  error: function(error){
 				  console.log(error);
 			  }
-		  });
-		  */
+         });
+    // avoid to execute the actual submit of the form.
+    return false;
+});
 
-		  
-		  var name = document.getElementById("name").value;
-		  if(name==null)
-			  name = "";
-		  var email = document.getElementById("email").value;
-		  if(email)
-			  email = "";
-		  var phone = document.getElementById("phone").value;
-		  if(phone)
-			  phone = "";
-		  var subject = document.getElementById("subject").value;
-		  if(subject)
-			  subject = "";
-		  var message = document.getElementById("message").value;
-		  if(message)
-			  message = "";
+	$("#contact-form-pricing").submit(function() {
 
+    var url = "http://localhost:8080/main/order"; // the script where you handle the form input.
 
-		  var data = {fullName:name, email:email, phone:phone, subject:subject, message:message};
-
-		  
-		   $.ajax({
-			  url: 'http://localhost:8080/main/getMail',
-			  type:"POST",
-			  beforeSend: function(xhr){
-				  xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-				  xhr.setRequestHeader('Content-Type', 'application/json');
-
-			  },
-			  data:data,
-			  success: function(result){
-					console.log(result);
+    $.ajax({
+           type: "POST",
+           url: url,
+		   dataType: 'json',
+           data: $("#contact-form-pricing").serialize(), 
+             success: function(result){
+					window.location.replace("file:///D:/Workspace/web/iSee/success.html");
 			  },
 			  error: function(error){
 				  console.log(error);
 			  }
-		  });
-		  
-		}
-       
+         });
+    // avoid to execute the actual submit of the form.
+    return false;
+});
