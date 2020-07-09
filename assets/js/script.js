@@ -477,43 +477,29 @@
 })(window.jQuery);
 
 
+	function fuckuana(){
 
-$("#contact-form").submit(function() {
+		var name = $("#name").val();
+		var mail = $("#email").val();	
+		var phone = $("#phone").val();
+		var subject = $("#subject").val();
+		var message = $("#message").val();
 
-    var url = "http://localhost:8080/main/order"; // the script where you handle the form input.
+		var templateParams = {
+			to_name: 'contact.nycameras@gmail.com ',
+			from_name: name,
+			phone: phone,
+			mail_from: mail,
+			subject: subject,
+			message_html: message
+		};
 
-    $.ajax({
-           type: "POST",
-           url: url,
-		   dataType: 'json',
-           data: $("#contact-form").serialize(), 
-             success: function(result){
-					window.location.replace("file:///D:/Workspace/web/iSee/success.html");
-			  },
-			  error: function(error){
-				  console.log(error);
-			  }
-         });
-    // avoid to execute the actual submit of the form.
-    return false;
-});
-
-	$("#contact-form-pricing").submit(function() {
-
-    var url = "http://localhost:8080/main/order"; // the script where you handle the form input.
-
-    $.ajax({
-           type: "POST",
-           url: url,
-		   dataType: 'json',
-           data: $("#contact-form-pricing").serialize(), 
-             success: function(result){
-					window.location.replace("file:///D:/Workspace/web/iSee/success.html");
-			  },
-			  error: function(error){
-				  console.log(error);
-			  }
-         });
-    // avoid to execute the actual submit of the form.
-    return false;
-});
+		emailjs.send('gmail', 'template_Cp49zOar', templateParams)
+			.then(function(response) {
+			  console.log('SUCCESS!', response.status, response.text);
+			  window.location.replace("success.html");
+			}, function(error) {
+			  console.log('FAILED...', error);
+		});
+	
+	}
