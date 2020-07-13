@@ -497,7 +497,7 @@
 		emailjs.send('gmail', 'template_Cp49zOar', templateParams)
 			.then(function(response) {
 			  console.log('SUCCESS!', response.status, response.text);
-			  window.location.replace("success.html");
+			  window.location.replace("../success.html");
 			}, function(error) {
 			  console.log('FAILED...', error);
 		});
